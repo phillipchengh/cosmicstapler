@@ -1,0 +1,27 @@
+{
+  "name": "cosmicstapler",
+  "version": "1.0.0",
+  "description": "my tumblr theme yo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phillipchengh/cosmicstapler.git"
+  },
+  "keywords": [
+    "swag",
+    "money"
+  ],
+  "author": "phillip",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phillipchengh/cosmicstapler/issues"
+  },
+  "homepage": "https://github.com/phillipchengh/cosmicstapler",
+  "dependencies": {
+    "express": "^4.13.1"
+  }
+}

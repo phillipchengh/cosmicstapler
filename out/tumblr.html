@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{Title}{block:PostSummary} &mdash; {PostSummary}{/block:PostSummary}</title>
+  {block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
+  <link rel="apple-touch-icon" href="{PortraitURL-128}">
+  <link rel="shortcut icon" href="{Favicon}">
+  <link rel="canonical" href="{block:IndexPage}{BlogURL}{/block:IndexPage}{block:PermalinkPage}{Permalink}{/block:PermalinkPage}">
+  <link rel="alternate" type="application/rss+xml" href="{RSS}">
+  {block:Hidden}
+    <!--
+
+      Custom theme options in the 'Hidden' block will not show when viewing the source code.
+      https://www.tumblr.com/docs/en/custom_themes#theme-options
+
+     <meta name="text:Twitter Username" content=""/>
+
+     -->
+  {/block:Hidden}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" type="text/css" media="all">
+  <style>a {
+  color: #9dbaf2;
+  text-decoration: none;
+}
+body {
+  background: #0a0a1e;
+  color: #363a71;
+  font-family: "jaf-bernino-sans", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+}
+.hyperchar {
+  -webkit-transition: color 3s ease;
+  -moz-transition: color 3s ease;
+  -o-transition: color 3s ease;
+  -ms-transition: color 3s ease;
+  transition: color 3s ease;
+}
+.cyan-background {
+  background: #8be9fd;
+}
+.green-background {
+  background: #50fa7b;
+}
+.orange-background {
+  background: #ffb86c;
+}
+.pink-background {
+  background: #ff79c6;
+}
+.purple-background {
+  background: #bd93f9;
+}
+.red-background {
+  background: #ff5555;
+}
+.yellow-background {
+  background: #f1fa8c;
+}
+.cyan-color {
+  color: #8be9fd;
+}
+.green-color {
+  color: #50fa7b;
+}
+.orange-color {
+  color: #ffb86c;
+}
+.pink-color {
+  color: #ff79c6;
+}
+.purple-color {
+  color: #bd93f9;
+}
+.red-color {
+  color: #ff5555;
+}
+.yellow-color {
+  color: #f1fa8c;
+}
+.cyan {
+  background: #8be9fd;
+  color: #8be9fd;
+}
+.green {
+  background: #50fa7b;
+  color: #50fa7b;
+}
+.orange {
+  background: #ffb86c;
+  color: #ffb86c;
+}
+.pink {
+  background: #ff79c6;
+  color: #ff79c6;
+}
+.purple {
+  background: #bd93f9;
+  color: #bd93f9;
+}
+.red {
+  background: #ff5555;
+  color: #ff5555;
+}
+.yellow {
+  background: #f1fa8c;
+  color: #f1fa8c;
+}
+.sidebar-container {
+  position: fixed;
+  text-align: center;
+  width: 400px;
+}
+.sidebar {
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+}
+.logo {
+  color: #9dbaf2;
+  display: inline-block;
+  font-family: "Open Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  -webkit-transition: color 0.3s ease;
+  -moz-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+  -ms-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+.logo:hover {
+  color: #b9ded4;
+}
+.description {
+  display: inline-block;
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+}
+.navigation-link {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  -webkit-transition: color 0.3s ease;
+  -moz-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+  -ms-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+.bar {
+  font-size: 0;
+  list-style: none;
+  width: 100%;
+}
+.block {
+  display: inline-block;
+  height: 7px;
+  -webkit-transition: background 1s ease;
+  -moz-transition: background 1s ease;
+  -o-transition: background 1s ease;
+  -ms-transition: background 1s ease;
+  transition: background 1s ease;
+  width: 5%;
+}
+.content {
+  left: 400px;
+  position: absolute;
+}
+</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.min.js"></script>
+  </head>
+<body>
+
+  <aside class="sidebar-container">
+    <aside class="sidebar">
+      <section class="title-section">
+        {block:ShowTitle}
+        <a class="logo" href="/">{Title}</a>
+        {/block:ShowTitle}
+      </section>
+      <section class="avatar-section">
+        <!-- {block:ShowHeaderImage}<img src="{HeaderImage}">{/block:ShowHeaderImage} -->
+        {block:ShowAvatar}<img src="{PortraitURL-128}">{/block:ShowAvatar}
+      </section>
+      <section class="description-section">
+        {block:ShowDescription}{block:Description}
+        <div class="description">{Description}</div>
+        {/block:Description}{/block:ShowDescription}
+      </section>
+      <section class="navigation-section">
+        <nav role="navigation">
+          {block:HasPages}{block:Pages}
+          <section class="link-section"> 
+            <a class="navigation-link" href="{URL}">{Label}</a>
+          </section>
+          {/block:Pages}{/block:HasPages}
+          <section class="link-div">
+            <a class="navigation-link" href="/archive">{lang:Archive}</a>
+          </section>
+          {block:AskEnabled}
+          <section class="link-div">
+            <a class="navigation-link" href="/ask">{AskLabel}</a>
+          </section>
+          {/block:AskEnabled}
+        </nav>
+      </section>
+      <section id="bar">
+      </section>
+    </aside>
+  </aside>
+
+  <main role="main" class="content">
+
+    {block:SearchPage}
+    <div class="result">
+      <p>{lang:Found SearchResultCount results for SearchQuery 2}</p>
+      {block:NoSearchResults}<p>{lang:No results for SearchQuery 2}</p>{/block:NoSearchResults}
+    </div>
+    {/block:SearchPage}
+
+    {block:TagPage}<div class="result"><p>{lang:TagResultCount posts tagged Tag 3}</p></div>{/block:TagPage}
+
+    {block:Posts}
+    <article class="post {PostType} {TagsAsClasses}">
+      <!-- {block:Date} -->
+      <!--   {block:NewDayDate}<p>{DayOfWeek}, {Month} {DayOfMonth}, {Year}</p>{/block:NewDayDate} -->
+      <!--   {block:SameDayDate}<p>{DayOfWeek}, {Month} {DayOfMonth}, {Year}</p>{/block:SameDayDate} -->
+      <!-- {/block:Date} -->
+
+      {block:Text}
+        {block:Title}<h2><a class="" href="{Permalink}">{Title}</a></h2>{/block:Title}
+        {block:Body}
+        <div class="body-text">
+          {Body}
+        </div>
+        {/block:Body}
+      {/block:Text}
+
+      {block:Quote}
+        <blockquote class="words {Length}">&#8220;{Quote}&#8221;</blockquote>
+        {block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
+      {/block:Quote}
+
+      {block:Link}
+        <h2><a class="" href="{URL}" {Target}>{Name}</a></h2>
+        {block:Description}<div class="caption">{Description}</div>{/block:Description}
+      {/block:Link}
+
+      {block:Audio}
+        {block:AlbumArt}<img src="{AlbumArtURL}" alt="">{/block:AlbumArt}
+        <div class="audio-player">
+          {block:AudioEmbed}
+            {AudioEmbed color="white"}
+          {/block:AudioEmbed}
+          {block:AudioPlayer}{AudioPlayerBlack}{/block:AudioPlayer}
+        </div>
+        {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+      {/block:Audio}
+
+      {block:Photo}
+        <figure class="{block:Caption} with-caption{/block:Caption}" data-photo-width="{PhotoWidth-500}">
+          {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}">{LinkCloseTag}
+          {block:Caption}<figcaption class="caption">{Caption}</figcaption>{/block:Caption}
+        </figure>
+      {/block:Photo}
+
+      {block:Photoset}
+        <figure{block:Caption} class="with-caption"{/block:Caption}>
+          {block:Photos}
+          <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+          {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+          {/block:Photos}
+          {block:Caption}<figcaption class="caption">{Caption}</figcaption>{/block:Caption}
+        </figure>
+      {/block:Photoset}
+
+      {block:Panorama}
+        <figure{block:Caption} class="with-caption"{/block:Caption}>
+          {LinkOpenTag}<img src="{PhotoURL-Panorama}" width="{PhotoWidth-Panorama}" height="{PhotoHeight-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
+          {block:Caption}<figcaption class="caption">{Caption}</figcaption>{/block:Caption}
+        </figure>
+      {/block:Panorama}
+
+      {block:Video}
+        <figure{block:Caption} class="with-caption"{/block:Caption}>
+          <div class="video-player">
+              {Video-700}
+          </div>
+          {block:Caption}<figcaption class="caption">{Caption}</figcaption>{/block:Caption}
+        </figure>
+      {/block:Video}
+
+      {block:Chat}
+        {block:Title}<h2>{Title}</h2>{/block:Title}
+        <ul class="conversation">
+          {block:Lines}
+          <li class="line {Alt}">
+            {block:Label}<span class="person">{Label}</span>{/block:Label}
+            <span class="person-said">{Line}</span>
+          </li>
+          {/block:Lines}
+        </ul>
+      {/block:Chat}
+
+      {block:Answer}
+        <section class="question">
+          <img src="{AskerPortraitURL-48}">
+          <div class="asker">{Asker} asked:</div>
+          <div class="asker-question">
+            {Question}
+          </div>
+        </section>
+        {block:Answerer}
+          <section class="answerer">
+            <img src="{AnswererPortraitURL-48}">
+            <p>{Answerer} answered:</p>
+            <div class="answerer-answer">
+              {Answer}
+            </div>
+          </section>
+        {/block:Answerer}
+        <div class="replies">{Replies}</div>
+      {/block:Answer}
+
+      {block:IndexPage}
+        {LikeButton color="grey"}
+        {ReblogButton color="grey"}
+        <p><a class="permalink" href="{Permalink}">{lang:Permalink}</a></p>
+      {/block:IndexPage}
+
+    </article>
+    {/block:Posts}
+
+    {block:PermalinkPagination}
+    <div class="pagination">
+      {block:PreviousPost}<a class="prev"href="{PreviousPost}">{lang:Previous post}</a>{/block:PreviousPost}
+      {block:NextPost}<a class="next" href="{NextPost}">{lang:Next post}</a>{/block:NextPost}
+    </div>
+    {/block:PermalinkPagination}
+
+    {block:Pagination}
+    <div class="pagination">
+      {block:PreviousPage}<a class="prev" href="{PreviousPage}">{lang:Previous}</a>{/block:PreviousPage}
+
+      {block:JumpPagination length="5"}
+        {block:CurrentPage}<span class="current-page">{PageNumber}</span>{/block:CurrentPage}
+        {block:JumpPage}<a class="jump-page" href="{URL}">{PageNumber}</a>{/block:JumpPage}
+      {/block:JumpPagination}
+
+      {block:NextPage}<a class="next" href="{NextPage}">{lang:Next}</a>{/block:NextPage}
+    </div>
+    {/block:Pagination}
+  </main>
+  <!-- <footer class="footer"> -->
+  <!--   <small>{block:ShowTitle}{Title} {/block:ShowTitle}&copy; {CopyrightYears}</small> -->
+  <!-- </footer> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/phillip/Projects/tumblr/in/js/Bootstrap.js":[function(require,module,exports){
+var Hypertext = require('./components/Hypertext');
+
+module.exports = {
+  
+  renderTextNodes: function() {
+    var nonWhitespaceMatcher = /\S/;
+
+    // http://stackoverflow.com/questions/298750/how-do-i-select-text-nodes-with-jquery
+    function renderTextNodesInNode(node) {
+      if (node.nodeType == 3) {
+        if (nonWhitespaceMatcher.test(node.nodeValue)) {
+          React.render(React.createElement(Hypertext, {text: node.textContent}), node.parentElement);
+        }
+      } else {
+        for (var i = 0, len = node.childNodes.length; i < len; ++i) {
+          renderTextNodesInNode(node.childNodes[i]);
+        }
+      }
+    }
+
+    // Will anyone ever put multiple a tags within a tag? I don't think so...
+    $('a').each(function() {
+      renderTextNodesInNode(this);
+    });
+  }
+
+};
+
+},{"./components/Hypertext":"/Users/phillip/Projects/tumblr/in/js/components/Hypertext.js"}],"/Users/phillip/Projects/tumblr/in/js/Color.js":[function(require,module,exports){
+var K = require('./Constants');
+
+module.exports = {
+
+  randomBackground: function() {
+    return K.BLOCK.COLORS[Math.floor(Math.random()*K.BLOCK.COLORS.length)];
+  },
+
+  randomColor: function() {
+    return K.CHAR.COLORS[Math.floor(Math.random()*K.CHAR.COLORS.length)];
+  }
+
+};
+
+},{"./Constants":"/Users/phillip/Projects/tumblr/in/js/Constants.js"}],"/Users/phillip/Projects/tumblr/in/js/Constants.js":[function(require,module,exports){
+module.exports = {
+
+  BLOCK: {
+    COLORS: ['cyan-background', 'green-background', 'orange-background', 'pink-background', 'purple-background', 'red-background', 'yellow-background'],
+  },
+
+  CHAR: {
+    COLORS: ['cyan-color', 'green-color', 'orange-color', 'pink-color', 'purple-color', 'red-color', 'yellow-color'],
+  },
+
+  LONG_TIME: 3000
+};
+
+},{}],"/Users/phillip/Projects/tumblr/in/js/Main.js":[function(require,module,exports){
+var Bootstrap = require('./Bootstrap');
+var Bar = require('./components/Bar');
+
+React.render(React.createElement(Bar, null), document.getElementById('bar'));
+
+Bootstrap.renderTextNodes();
+
+console.log(new Date().getTime());
+
+},{"./Bootstrap":"/Users/phillip/Projects/tumblr/in/js/Bootstrap.js","./components/Bar":"/Users/phillip/Projects/tumblr/in/js/components/Bar.js"}],"/Users/phillip/Projects/tumblr/in/js/components/Bar.js":[function(require,module,exports){
+var K = require('../Constants');
+var Block = require('./Block');
+
+var Bar = React.createClass({displayName: "Bar",
+
+  componentDidMount: function() {
+    console.log(this.props.children);
+    var thisBar = this;
+    var intervalHandler = setInterval(function() {
+      React.Children.map(thisBar.props.children, function(child) {
+        console.log(child);
+        child.setState({background: Color.randomBackground()});
+      }); 
+    }, K.LONG_TIME);
+  },
+
+  render: function() {
+    return (
+      React.createElement("div", {className: "bar"}, 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null), 
+        React.createElement(Block, null)
+      )
+    );
+  }
+});
+
+module.exports = Bar;
+
+},{"../Constants":"/Users/phillip/Projects/tumblr/in/js/Constants.js","./Block":"/Users/phillip/Projects/tumblr/in/js/components/Block.js"}],"/Users/phillip/Projects/tumblr/in/js/components/Block.js":[function(require,module,exports){
+var K = require('../Constants');
+var Color = require('../Color');
+
+var Block = React.createClass({displayName: "Block",
+
+  getInitialState: function() {
+    var background = Color.randomBackground();
+    return {
+      background: background
+    };
+  },
+
+  componentDidMount: function() {
+    var thisBlock = this;
+    // Should we save the interval handler if block is ever deleted?
+    var intervalHandler = setInterval(function() {
+      thisBlock.setState({background: Color.randomBackground()});
+    }, K.LONG_TIME);
+  },
+
+  render: function() {
+    var classSet = {
+      'block': true
+    };
+    for (var i = 0; i < K.BLOCK.COLORS.length; i++) {
+      classSet[K.BLOCK.COLORS[i]] = this.state.background === K.BLOCK.COLORS[i];
+    }
+    var classes = React.addons.classSet(classSet);
+    return React.createElement("li", {className: classes});
+  }
+
+});
+
+module.exports = Block;
+
+},{"../Color":"/Users/phillip/Projects/tumblr/in/js/Color.js","../Constants":"/Users/phillip/Projects/tumblr/in/js/Constants.js"}],"/Users/phillip/Projects/tumblr/in/js/components/Hyperchar.js":[function(require,module,exports){
+var K = require('../Constants');
+var Color = require('../Color');
+
+var Hyperchar = React.createClass({displayName: "Hyperchar",
+
+  getInitialState: function() {
+    var color = Color.randomColor();
+    return {
+      color: color
+    };
+  },
+
+  componentDidMount: function() {
+    var thisChar = this;
+    // Should we save the interval handler if block is ever deleted?
+    var intervalHandler = setInterval(function() {
+      thisChar.setState({color: Color.randomColor()});
+    }, K.LONG_TIME);
+
+  },
+
+  render: function() {
+    var classSet = {
+      hyperchar: true
+    };
+    for (var i = 0; i < K.CHAR.COLORS.length; i++) {
+      classSet[K.CHAR.COLORS[i]] = this.state.color === K.CHAR.COLORS[i];
+    }
+    var classes = React.addons.classSet(classSet);
+    return React.createElement("span", {className: classes}, this.props.char);
+  }
+
+});
+
+module.exports = Hyperchar;
+
+},{"../Color":"/Users/phillip/Projects/tumblr/in/js/Color.js","../Constants":"/Users/phillip/Projects/tumblr/in/js/Constants.js"}],"/Users/phillip/Projects/tumblr/in/js/components/Hypertext.js":[function(require,module,exports){
+var Hyperchar = require('./Hyperchar');
+
+var Hypertext = React.createClass({displayName: "Hypertext",
+
+  render: function() {
+    var chars = this.props.text.split('');
+    return (
+      React.createElement("span", {className: "hypertext"}, 
+        chars.map(function(c, i) {
+          return React.createElement(Hyperchar, {char: c, key: i});
+        })
+      )
+    );
+  }
+
+});
+
+module.exports = Hypertext;
+
+},{"./Hyperchar":"/Users/phillip/Projects/tumblr/in/js/components/Hyperchar.js"}]},{},["/Users/phillip/Projects/tumblr/in/js/Main.js"])
+//# sourceMappingURL=data:application/json;charset:utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vZGVfbW9kdWxlcy9icm93c2VyaWZ5L25vZGVfbW9kdWxlcy9icm93c2VyLXBhY2svX3ByZWx1ZGUuanMiLCIvVXNlcnMvcGhpbGxpcC9Qcm9qZWN0cy90dW1ibHIvaW4vanMvQm9vdHN0cmFwLmpzIiwiL1VzZXJzL3BoaWxsaXAvUHJvamVjdHMvdHVtYmxyL2luL2pzL0NvbG9yLmpzIiwiL1VzZXJzL3BoaWxsaXAvUHJvamVjdHMvdHVtYmxyL2luL2pzL0NvbnN0YW50cy5qcyIsIi9Vc2Vycy9waGlsbGlwL1Byb2plY3RzL3R1bWJsci9pbi9qcy9NYWluLmpzIiwiL1VzZXJzL3BoaWxsaXAvUHJvamVjdHMvdHVtYmxyL2luL2pzL2NvbXBvbmVudHMvQmFyLmpzIiwiL1VzZXJzL3BoaWxsaXAvUHJvamVjdHMvdHVtYmxyL2luL2pzL2NvbXBvbmVudHMvQmxvY2suanMiLCIvVXNlcnMvcGhpbGxpcC9Qcm9qZWN0cy90dW1ibHIvaW4vanMvY29tcG9uZW50cy9IeXBlcmNoYXIuanMiLCIvVXNlcnMvcGhpbGxpcC9Qcm9qZWN0cy90dW1ibHIvaW4vanMvY29tcG9uZW50cy9IeXBlcnRleHQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUNBQSxJQUFJLFNBQVMsR0FBRyxPQUFPLENBQUMsd0JBQXdCLENBQUMsQ0FBQzs7QUFFbEQsTUFBTSxDQUFDLE9BQU8sR0FBRzs7RUFFZixlQUFlLEVBQUUsV0FBVztBQUM5QixJQUFJLElBQUksb0JBQW9CLEdBQUcsSUFBSSxDQUFDO0FBQ3BDOztJQUVJLFNBQVMscUJBQXFCLENBQUMsSUFBSSxFQUFFO01BQ25DLElBQUksSUFBSSxDQUFDLFFBQVEsSUFBSSxDQUFDLEVBQUU7UUFDdEIsSUFBSSxvQkFBb0IsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxFQUFFO1VBQzdDLEtBQUssQ0FBQyxNQUFNLENBQUMsb0JBQUMsU0FBUyxFQUFBLENBQUEsQ0FBQyxJQUFBLEVBQUksQ0FBRSxJQUFJ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QUcsSUFBSSxDQUFDLEtBQUssQ0FBQyxLQUFLLEtBQUssQ0FBQyxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsQ0FBQyxDQUFDLENBQUM7S0FDcEU7SUFDRCxJQUFJLE9BQU8sR0FBRyxLQUFLLENBQUMsTUFBTSxDQUFDLFFBQVEsQ0FBQyxRQUFRLENBQUMsQ0FBQztJQUM5QyxPQUFPLG9CQUFBLE1BQUssRUFBQSxDQUFBLENBQUMsU0FBQSxFQUFTLENBQUUsT0FBUyxDQUFBLEVBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFZLENBQUEsQ0FBQztBQUM5RCxHQUFHOztBQUVILENBQUMsQ0FBQyxDQUFDOztBQUVILE1BQU0sQ0FBQyxPQUFPLEdBQUcsU0FBUyxDQUFDOzs7QUNsQzNCLElBQUksU0FBUyxHQUFHLE9BQU8sQ0FBQyxhQUFhLENBQUMsQ0FBQzs7QUFFdkMsSUFBSSwrQkFBK0IseUJBQUE7O0VBRWpDLE1BQU0sRUFBRSxXQUFXO0lBQ2pCLElBQUksS0FBSyxHQUFHLElBQUksQ0FBQyxLQUFLLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxFQUFFLENBQUMsQ0FBQztJQUN0QztNQUNFLG9CQUFBLE1BQUssRUFBQSxDQUFBLENBQUMsU0FBQSxFQUFTLENBQUMsV0FBWSxDQUFBLEVBQUE7UUFDekIsS0FBSyxDQUFDLEdBQUcsQ0FBQyxTQUFTLENBQUMsRUFBRSxDQUFDLEVBQUU7VUFDeEIsT0FBTyxvQkFBQyxTQUFTLEVBQUEsQ0FBQSxDQUFDLElBQUEsRUFBSSxDQUFFLENBQUMsRUFBQyxDQUFDLEdBQUEsRUFBRyxDQUFFLENBQUUsQ0FBQSxDQUFHLENBQUEsQ0FBQztTQUN2QyxDQUFFO01BQ0UsQ0FBQTtNQUNQO0FBQ04sR0FBRzs7QUFFSCxDQUFDLENBQUMsQ0FBQzs7QUFFSCxNQUFNLENBQUMsT0FBTyxHQUFHLFNBQVMsQ0FBQyIsImZpbGUiOiJnZW5lcmF0ZWQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlc0NvbnRlbnQiOlsiKGZ1bmN0aW9uIGUodCxuLHIpe2Z1bmN0aW9uIHMobyx1KXtpZighbltvXSl7aWYoIXRbb10pe3ZhciBhPXR5cGVvZiByZXF1aXJlPT1cImZ1bmN0aW9uXCImJnJlcXVpcmU7aWYoIXUmJmEpcmV0dXJuIGEobywhMCk7aWYoaSlyZXR1cm4gaShvLCEwKTt2YXIgZj1uZXcgRXJyb3IoXCJDYW5ub3QgZmluZCBtb2R1bGUgJ1wiK28rXCInXCIpO3Rocm93IGYuY29kZT1cIk1PRFVMRV9OT1RfRk9VTkRcIixmfXZhciBsPW5bb109e2V4cG9ydHM6e319O3Rbb11bMF0uY2FsbChsLmV4cG9ydHMsZnVuY3Rpb24oZSl7dmFyIG49dFtvXVsxXVtlXTtyZXR1cm4gcyhuP246ZSl9LGwsbC5leHBvcnRzLGUsdCxuLHIpfXJldHVybiBuW29dLmV4cG9ydHN9dmFyIGk9dHlwZW9mIHJlcXVpcmU9PVwiZnVuY3Rpb25cIiYmcmVxdWlyZTtmb3IodmFyIG89MDtvPHIubGVuZ3RoO28rKylzKHJbb10pO3JldHVybiBzfSkiLCJ2YXIgSHlwZXJ0ZXh0ID0gcmVxdWlyZSgnLi9jb21wb25lbnRzL0h5cGVydGV4dCcpO1xuXG5tb2R1bGUuZXhwb3J0cyA9IHtcbiAgXG4gIHJlbmRlclRleHROb2RlczogZnVuY3Rpb24oKSB7XG4gICAgdmFyIG5vbldoaXRlc3BhY2VNYXRjaGVyID0gL1xcUy87XG5cbiAgICAvLyBodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zLzI5ODc1MC9ob3ctZG8taS1zZWxlY3QtdGV4dC1ub2Rlcy13aXRoLWpxdWVyeVxuICAgIGZ1bmN0aW9uIHJlbmRlclRleHROb2Rlc0luTm9kZShub2RlKSB7XG4gICAgICBpZiAobm9kZS5ub2RlVHlwZSA9PSAzKSB7XG4gICAgICAgIGlmIChub25XaGl0ZXNwYWNlTWF0Y2hlci50ZXN0KG5vZGUubm9kZVZhbHVlKSkge1xuICAgICAgICAgIFJlYWN0LnJlbmRlcig8SHlwZXJ0ZXh0IHRleHQ9e25vZGUudGV4dENvbnRlbnR9PjwvSHlwZXJ0ZXh0Piwgbm9kZS5wYXJlbnRFbGVtZW50KTtcbiAgICAgICAgfVxuICAgICAgfSBlbHNlIHtcbiAgICAgICAgZm9yICh2YXIgaSA9IDAsIGxlbiA9IG5vZGUuY2hpbGROb2Rlcy5sZW5ndGg7IGkgPCBsZW47ICsraSkge1xuICAgICAgICAgIHJlbmRlclRleHROb2Rlc0luTm9kZShub2RlLmNoaWxkTm9kZXNbaV0pO1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuXG4gICAgLy8gV2lsbCBhbnlvbmUgZXZlciBwdXQgbXVsdGlwbGUgYSB0YWdzIHdpdGhpbiBhIHRhZz8gSSBkb24ndCB0aGluayBzby4uLlxuICAgICQoJ2EnKS5lYWNoKGZ1bmN0aW9uKCkge1xuICAgICAgcmVuZGVyVGV4dE5vZGVzSW5Ob2RlKHRoaXMpO1xuICAgIH0pO1xuICB9XG5cbn07XG4iLCJ2YXIgSyA9IHJlcXVpcmUoJy4vQ29uc3RhbnRzJyk7XG5cbm1vZHVsZS5leHBvcnRzID0ge1xuXG4gIHJhbmRvbUJhY2tncm91bmQ6IGZ1bmN0aW9uKCkge1xuICAgIHJldHVybiBLLkJMT0NLLkNPTE9SU1tNYXRoLmZsb29yKE1hdGgucmFuZG9tKCkqSy5CTE9DSy5DT0xPUlMubGVuZ3RoKV07XG4gIH0sXG5cbiAgcmFuZG9tQ29sb3I6IGZ1bmN0aW9uKCkge1xuICAgIHJldHVybiBLLkNIQVIuQ09MT1JTW01hdGguZmxvb3IoTWF0aC5yYW5kb20oKSpLLkNIQVIuQ09MT1JTLmxlbmd0aCldO1xuICB9XG5cbn07XG4iLCJtb2R1bGUuZXhwb3J0cyA9IHtcblxuICBCTE9DSzoge1xuICAgIENPTE9SUzogWydjeWFuLWJhY2tncm91bmQnLCAnZ3JlZW4tYmFja2dyb3VuZCcsICdvcmFuZ2UtYmFja2dyb3VuZCcsICdwaW5rLWJhY2tncm91bmQnLCAncHVycGxlLWJhY2tncm91bmQnLCAncmVkLWJhY2tncm91bmQnLCAneWVsbG93LWJhY2tncm91bmQnXSxcbiAgfSxcblxuICBDSEFSOiB7XG4gICAgQ09MT1JTOiBbJ2N5YW4tY29sb3InLCAnZ3JlZW4tY29sb3InLCAnb3JhbmdlLWNvbG9yJywgJ3BpbmstY29sb3InLCAncHVycGxlLWNvbG9yJywgJ3JlZC1jb2xvcicsICd5ZWxsb3ctY29sb3InXSxcbiAgfSxcblxuICBMT05HX1RJTUU6IDMwMDBcbn07XG4iLCJ2YXIgQm9vdHN0cmFwID0gcmVxdWlyZSgnLi9Cb290c3RyYXAnKTtcbnZhciBCYXIgPSByZXF1aXJlKCcuL2NvbXBvbmVudHMvQmFyJyk7XG5cblJlYWN0LnJlbmRlcig8QmFyLz4sIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdiYXInKSk7XG5cbkJvb3RzdHJhcC5yZW5kZXJUZXh0Tm9kZXMoKTtcblxuY29uc29sZS5sb2cobmV3IERhdGUoKS5nZXRUaW1lKCkpO1xuIiwidmFyIEsgPSByZXF1aXJlKCcuLi9Db25zdGFudHMnKTtcbnZhciBCbG9jayA9IHJlcXVpcmUoJy4vQmxvY2snKTtcblxudmFyIEJhciA9IFJlYWN0LmNyZWF0ZUNsYXNzKHtcblxuICBjb21wb25lbnREaWRNb3VudDogZnVuY3Rpb24oKSB7XG4gICAgY29uc29sZS5sb2codGhpcy5wcm9wcy5jaGlsZHJlbik7XG4gICAgdmFyIHRoaXNCYXIgPSB0aGlzO1xuICAgIHZhciBpbnRlcnZhbEhhbmRsZXIgPSBzZXRJbnRlcnZhbChmdW5jdGlvbigpIHtcbiAgICAgIFJlYWN0LkNoaWxkcmVuLm1hcCh0aGlzQmFyLnByb3BzLmNoaWxkcmVuLCBmdW5jdGlvbihjaGlsZCkge1xuICAgICAgICBjb25zb2xlLmxvZyhjaGlsZCk7XG4gICAgICAgIGNoaWxkLnNldFN0YXRlKHtiYWNrZ3JvdW5kOiBDb2xvci5yYW5kb21CYWNrZ3JvdW5kKCl9KTtcbiAgICAgIH0pOyBcbiAgICB9LCBLLkxPTkdfVElNRSk7XG4gIH0sXG5cbiAgcmVuZGVyOiBmdW5jdGlvbigpIHtcbiAgICByZXR1cm4gKFxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJiYXJcIj5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgICAgPEJsb2NrLz5cbiAgICAgIDwvZGl2PlxuICAgICk7XG4gIH1cbn0pO1xuXG5tb2R1bGUuZXhwb3J0cyA9IEJhcjtcbiIsInZhciBLID0gcmVxdWlyZSgnLi4vQ29uc3RhbnRzJyk7XG52YXIgQ29sb3IgPSByZXF1aXJlKCcuLi9Db2xvcicpO1xuXG52YXIgQmxvY2sgPSBSZWFjdC5jcmVhdGVDbGFzcyh7XG5cbiAgZ2V0SW5pdGlhbFN0YXRlOiBmdW5jdGlvbigpIHtcbiAgICB2YXIgYmFja2dyb3VuZCA9IENvbG9yLnJhbmRvbUJhY2tncm91bmQoKTtcbiAgICByZXR1cm4ge1xuICAgICAgYmFja2dyb3VuZDogYmFja2dyb3VuZFxuICAgIH07XG4gIH0sXG5cbiAgY29tcG9uZW50RGlkTW91bnQ6IGZ1bmN0aW9uKCkge1xuICAgIHZhciB0aGlzQmxvY2sgPSB0aGlzO1xuICAgIC8vIFNob3VsZCB3ZSBzYXZlIHRoZSBpbnRlcnZhbCBoYW5kbGVyIGlmIGJsb2NrIGlzIGV2ZXIgZGVsZXRlZD9cbiAgICB2YXIgaW50ZXJ2YWxIYW5kbGVyID0gc2V0SW50ZXJ2YWwoZnVuY3Rpb24oKSB7XG4gICAgICB0aGlzQmxvY2suc2V0U3RhdGUoe2JhY2tncm91bmQ6IENvbG9yLnJhbmRvbUJhY2tncm91bmQoKX0pO1xuICAgIH0sIEsuTE9OR19USU1FKTtcbiAgfSxcblxuICByZW5kZXI6IGZ1bmN0aW9uKCkge1xuICAgIHZhciBjbGFzc1NldCA9IHtcbiAgICAgICdibG9jayc6IHRydWVcbiAgICB9O1xuICAgIGZvciAodmFyIGkgPSAwOyBpIDwgSy5CTE9DSy5DT0xPUlMubGVuZ3RoOyBpKyspIHtcbiAgICAgIGNsYXNzU2V0W0suQkxPQ0suQ09MT1JTW2ldXSA9IHRoaXMuc3RhdGUuYmFja2dyb3VuZCA9PT0gSy5CTE9DSy5DT0xPUlNbaV07XG4gICAgfVxuICAgIHZhciBjbGFzc2VzID0gUmVhY3QuYWRkb25zLmNsYXNzU2V0KGNsYXNzU2V0KTtcbiAgICByZXR1cm4gPGxpIGNsYXNzTmFtZT17Y2xhc3Nlc30+PC9saT47XG4gIH1cblxufSk7XG5cbm1vZHVsZS5leHBvcnRzID0gQmxvY2s7XG4iLCJ2YXIgSyA9IHJlcXVpcmUoJy4uL0NvbnN0YW50cycpO1xudmFyIENvbG9yID0gcmVxdWlyZSgnLi4vQ29sb3InKTtcblxudmFyIEh5cGVyY2hhciA9IFJlYWN0LmNyZWF0ZUNsYXNzKHtcblxuICBnZXRJbml0aWFsU3RhdGU6IGZ1bmN0aW9uKCkge1xuICAgIHZhciBjb2xvciA9IENvbG9yLnJhbmRvbUNvbG9yKCk7XG4gICAgcmV0dXJuIHtcbiAgICAgIGNvbG9yOiBjb2xvclxuICAgIH07XG4gIH0sXG5cbiAgY29tcG9uZW50RGlkTW91bnQ6IGZ1bmN0aW9uKCkge1xuICAgIHZhciB0aGlzQ2hhciA9IHRoaXM7XG4gICAgLy8gU2hvdWxkIHdlIHNhdmUgdGhlIGludGVydmFsIGhhbmRsZXIgaWYgYmxvY2sgaXMgZXZlciBkZWxldGVkP1xuICAgIHZhciBpbnRlcnZhbEhhbmRsZXIgPSBzZXRJbnRlcnZhbChmdW5jdGlvbigpIHtcbiAgICAgIHRoaXNDaGFyLnNldFN0YXRlKHtjb2xvcjogQ29sb3IucmFuZG9tQ29sb3IoKX0pO1xuICAgIH0sIEsuTE9OR19USU1FKTtcblxuICB9LFxuXG4gIHJlbmRlcjogZnVuY3Rpb24oKSB7XG4gICAgdmFyIGNsYXNzU2V0ID0ge1xuICAgICAgaHlwZXJjaGFyOiB0cnVlXG4gICAgfTtcbiAgICBmb3IgKHZhciBpID0gMDsgaSA8IEsuQ0hBUi5DT0xPUlMubGVuZ3RoOyBpKyspIHtcbiAgICAgIGNsYXNzU2V0W0suQ0hBUi5DT0xPUlNbaV1dID0gdGhpcy5zdGF0ZS5jb2xvciA9PT0gSy5DSEFSLkNPTE9SU1tpXTtcbiAgICB9XG4gICAgdmFyIGNsYXNzZXMgPSBSZWFjdC5hZGRvbnMuY2xhc3NTZXQoY2xhc3NTZXQpO1xuICAgIHJldHVybiA8c3BhbiBjbGFzc05hbWU9e2NsYXNzZXN9Pnt0aGlzLnByb3BzLmNoYXJ9PC9zcGFuPjtcbiAgfVxuXG59KTtcblxubW9kdWxlLmV4cG9ydHMgPSBIeXBlcmNoYXI7XG4iLCJ2YXIgSHlwZXJjaGFyID0gcmVxdWlyZSgnLi9IeXBlcmNoYXInKTtcblxudmFyIEh5cGVydGV4dCA9IFJlYWN0LmNyZWF0ZUNsYXNzKHtcblxuICByZW5kZXI6IGZ1bmN0aW9uKCkge1xuICAgIHZhciBjaGFycyA9IHRoaXMucHJvcHMudGV4dC5zcGxpdCgnJyk7XG4gICAgcmV0dXJuIChcbiAgICAgIDxzcGFuIGNsYXNzTmFtZT1cImh5cGVydGV4dFwiPlxuICAgICAgICB7Y2hhcnMubWFwKGZ1bmN0aW9uKGMsIGkpIHtcbiAgICAgICAgICByZXR1cm4gPEh5cGVyY2hhciBjaGFyPXtjfSBrZXk9e2l9IC8+O1xuICAgICAgICB9KX1cbiAgICAgIDwvc3Bhbj5cbiAgICApO1xuICB9XG5cbn0pO1xuXG5tb2R1bGUuZXhwb3J0cyA9IEh5cGVydGV4dDtcbiJdfQ==
+</script>
+</body>
+</html>

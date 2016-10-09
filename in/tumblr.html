@@ -21,37 +21,48 @@
      -->
   {/block:Hidden}
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" type="text/css" media="all">
-  <style type="text/css">
-    /*Tumblr Global Appearance */
-    body {background:{BackgroundColor};}
-    h1 > a {color:{TitleColor};}
-    a {color:{AccentColor}}
-    {CustomCSS}
-  </style>
-</head>
+  <link rel="stylesheet" href="style.css" inline></link>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.min.js"></script>
+  </head>
 <body>
 
-  <header role="banner" class="header">
-
-    {block:ShowTitle}<h1 id="logo"><a href="/">{Title}</a></h1>{/block:ShowTitle}
-    {block:ShowDescription}{block:Description}<div class="description">{Description}</div>{/block:Description}{/block:ShowDescription}
-    {block:ShowHeaderImage}<img src="{HeaderImage}">{/block:ShowHeaderImage}
-    {block:ShowAvatar}<img src="{PortraitURL-128}">{/block:ShowAvatar}
-
-    <nav role="navigation">
-      <ul>
-        {block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
-        <li><a href="/archive">{lang:Archive}</a></li>
-        {block:AskEnabled}<li><a href="/ask">{AskLabel}</a></li>{/block:AskEnabled}
-      </ul>
-    </nav>
-
-    <form id="search" action="/search" method="get">
-      <input role="textbox" type="search" placeholder="{lang:Search}" name="q" value="{SearchQuery}">
-      <input role="button" type="submit" value="{lang:Search}">
-    </form>
-
-  </header>
+  <aside class="sidebar-container">
+    <aside class="sidebar">
+      <section class="title-section">
+        {block:ShowTitle}
+        <a class="logo" href="/">{Title}</a>
+        {/block:ShowTitle}
+      </section>
+      <section class="avatar-section">
+        <!-- {block:ShowHeaderImage}<img src="{HeaderImage}">{/block:ShowHeaderImage} -->
+        {block:ShowAvatar}<img src="{PortraitURL-128}">{/block:ShowAvatar}
+      </section>
+      <section class="description-section">
+        {block:ShowDescription}{block:Description}
+        <div class="description">{Description}</div>
+        {/block:Description}{/block:ShowDescription}
+      </section>
+      <section class="navigation-section">
+        <nav role="navigation">
+          {block:HasPages}{block:Pages}
+          <section class="link-section"> 
+            <a class="navigation-link" href="{URL}">{Label}</a>
+          </section>
+          {/block:Pages}{/block:HasPages}
+          <section class="link-div">
+            <a class="navigation-link" href="/archive">{lang:Archive}</a>
+          </section>
+          {block:AskEnabled}
+          <section class="link-div">
+            <a class="navigation-link" href="/ask">{AskLabel}</a>
+          </section>
+          {/block:AskEnabled}
+        </nav>
+      </section>
+      <section id="bar">
+      </section>
+    </aside>
+  </aside>
 
   <main role="main" class="content">
 
@@ -66,13 +77,13 @@
 
     {block:Posts}
     <article class="post {PostType} {TagsAsClasses}">
-      {block:Date}
-        {block:NewDayDate}<p>{DayOfWeek}, {Month} {DayOfMonth}, {Year}</p>{/block:NewDayDate}
-        {block:SameDayDate}<p>{DayOfWeek}, {Month} {DayOfMonth}, {Year}</p>{/block:SameDayDate}
-      {/block:Date}
+      <!-- {block:Date} -->
+      <!--   {block:NewDayDate}<p>{DayOfWeek}, {Month} {DayOfMonth}, {Year}</p>{/block:NewDayDate} -->
+      <!--   {block:SameDayDate}<p>{DayOfWeek}, {Month} {DayOfMonth}, {Year}</p>{/block:SameDayDate} -->
+      <!-- {/block:Date} -->
 
       {block:Text}
-        {block:Title}<h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+        {block:Title}<h2><a class="" href="{Permalink}">{Title}</a></h2>{/block:Title}
         {block:Body}
         <div class="body-text">
           {Body}
@@ -86,7 +97,7 @@
       {/block:Quote}
 
       {block:Link}
-        <h2><a href="{URL}" {Target}>{Name}</a></h2>
+        <h2><a class="" href="{URL}" {Target}>{Name}</a></h2>
         {block:Description}<div class="caption">{Description}</div>{/block:Description}
       {/block:Link}
 
@@ -102,8 +113,8 @@
       {/block:Audio}
 
       {block:Photo}
-        <figure class="{block:HighRes}high-res{/block:HighRes}{block:Caption} with-caption{/block:Caption}" data-photo-width="{PhotoWidth-HighRes}">
-          {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}">{LinkCloseTag}
+        <figure class="{block:Caption} with-caption{/block:Caption}" data-photo-width="{PhotoWidth-500}">
+          {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}">{LinkCloseTag}
           {block:Caption}<figcaption class="caption">{Caption}</figcaption>{/block:Caption}
         </figure>
       {/block:Photo}
@@ -169,7 +180,7 @@
       {block:IndexPage}
         {LikeButton color="grey"}
         {ReblogButton color="grey"}
-        <p><a href="{Permalink}" class="permalink">{lang:Permalink}</a></p>
+        <p><a class="permalink" href="{Permalink}">{lang:Permalink}</a></p>
       {/block:IndexPage}
 
     </article>
@@ -195,8 +206,10 @@
     </div>
     {/block:Pagination}
   </main>
-  <footer class="footer">
-    <small>{block:ShowTitle}{Title} {/block:ShowTitle}&copy; {CopyrightYears}</small>
-  </footer>
+  <!-- <footer class="footer"> -->
+  <!--   <small>{block:ShowTitle}{Title} {/block:ShowTitle}&copy; {CopyrightYears}</small> -->
+  <!-- </footer> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="script.js" inline></script>
 </body>
 </html>

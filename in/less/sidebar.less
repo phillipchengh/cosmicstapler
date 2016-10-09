@@ -1,0 +1,52 @@
+.sidebar-container {
+  position: fixed;
+  text-align: center;
+  width: @sidebar-width-content-left;  
+}
+
+.sidebar {
+  display: inline-block;
+  padding: @sidebar-padding;
+  text-align: center;
+}
+
+.logo {
+  color: @logo-color;
+  display: inline-block;
+  font-family: "Open Sans", sans-serif;
+  font-size: @logo-font-size;
+  font-weight: @logo-font-weight;
+  letter-spacing: @logo-letter-spacing;
+  .transition(@logo-transition);
+}
+
+.logo:hover {
+  color: @logo-hover-color;
+}
+
+.description {
+  display: inline-block; 
+  font-family: @description-font-family;
+  font-size: @description-font-size;
+}
+
+.navigation-link {
+  font-family: @font-family2;
+  font-size: @navigation-link-font-size;
+  font-weight: @navigation-link-font-weight;
+  line-height: @navigation-link-line-height;
+  .transition(@navigation-link-transition);
+}
+
+.bar {
+  font-size: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.block {
+  display: inline-block;
+  height: @block-height;
+  .transition(@block-transition);
+  width: @block-width;
+}
